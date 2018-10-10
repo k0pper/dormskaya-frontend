@@ -1,0 +1,41 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~angular-notifier/styles.css";
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body, html {
+
+}
+
+* {
+  font-family: Raleway, Ubuntu, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+}
+
+b {
+  font-weight: 800;
+}
+
+
+button[color="primary"] {
+  background: rgb(62, 177, 79) !important;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 22px;
+  margin-left: 5px;
+  margin-bottom: 16px;
+}
+
+h2 {
+  margin-left: 6px;
+  font-size: 18px;
+  color: gray;
+  margin-bottom: 8px;
+}
+
+p {
+  margin: 6px;
+  font-size: 16px;
+
+}

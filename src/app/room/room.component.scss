@@ -1,0 +1,73 @@
+.roomTitle {
+  font-size: 24px;
+}
+
+.mat-card-header-text {
+  margin: 0;
+}
+
+.fav {
+  color: red;
+}
+
+.fav-black {
+  color: black;
+}
+
+mat-card {
+  margin-bottom: 12px;
+}
+
+mat-card-actions {
+
+}
+
+p {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+mat-icon {
+  transition: 0.3s;
+}
+
+mat-expansion-panel {
+  background: rgba(245, 245, 245, 0.34);
+}
+
+.custom-badge {
+  padding: 3px;
+  border-radius: 3px;
+  border: rgba(0, 0, 0, 0.29) solid 1px;
+  color: white;
+  box-shadow: #a8a8a8 1px 1px 1px 1px;
+  float: right;
+  opacity: 0.8;
+}
+
+.small {
+  font-size: 12px;
+}
+
+mat-expansion-panel {
+  margin-bottom: 10px;
+}
+
+mat-panel-title {
+  max-width: 50px;
+
+  span {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+  }
+}
+
+.ownerStyle {
+  background: rgba(255, 220, 0, 0.24);
+}
+
+.hoverable {
+  cursor: pointer;
+}

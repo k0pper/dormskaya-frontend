@@ -6,11 +6,10 @@
 /out-tsc
 
 # dependencies
-/frontend/node_modules
+node_modules
 
 # IDEs and editors
-/frontend/.idea
-/frontend/.idea/*
+.idea
 .project
 .classpath
 .editorconfig
@@ -27,18 +26,15 @@
 !.vscode/extensions.json
 
 # misc
-/frontend/.sass-cache
-/frontend/connect.lock
-/frontend/coverage
-/frontend/libpeerconnection.log
+.sass-cache
+connect.lock
+coverage
+libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log
-/frontend/typings
+typings
 
 # System Files
 .DS_Store
 Thumbs.db
-
-# IDEA backend
-backend/.idea

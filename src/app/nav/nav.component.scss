@@ -1,0 +1,52 @@
+mat-toolbar {
+  background: rgb(62, 177, 79);
+
+  mat-icon {
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    transitioN: 0.3s;
+    outline: none;
+    color: white;
+    text-shadow: 1px 1px 1px black, 0 0 1em black;
+  }
+
+  mat-icon:hover {
+    transform: scale(1.2);
+  }
+
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.homebutton {
+  cursor: pointer;
+  outline: none;
+  color: white;
+  text-shadow: 1px 1px 1px black, 0 0 0 black;
+}
+
+mat-menu {
+  button{
+    background: red !important;
+  }
+  mat-icon{
+    margin-right: 0 !important;
+    margin-left: 20px;
+  }
+
+}
+
+hr {
+  color: white !important;
+}
+
+.logout {
+  color: red;
+
+  mat-icon {
+    color: red;
+  }
+}

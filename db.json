@@ -1,0 +1,53 @@
+{
+  "users": [
+    {
+      "id": "alex",
+      "roomnumber": "210b",
+      "password": "12345"
+    },
+    {
+      "id": "andrew",
+      "roomnumber": "210b",
+      "password": "12345"
+    }
+  ],
+  "rooms": [
+    {
+      "roomnumber": "210b",
+      "description": "Please dont disturb us, we are sleeping. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+      "status": "DO NOT DISTURB"
+    },
+    {
+      "roomnumber": "212b",
+      "description": "",
+      "status": "DO NOT DISTURB"
+    },
+    {
+      "roomnumber": "314b",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+      "status": "DO NOT DISTURB"
+    },
+    {
+      "roomnumber": "411b",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+      "status": "RELAXING"
+    },
+    {
+      "roomnumber": "212a",
+      "description": "Lorem ipsum dolor sit amet",
+      "status": "DRINKING"
+    },
+    {
+      "roomnumber": "513a",
+      "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,",
+      "status": "PARTY"
+    }
+  ],
+  "login": [
+    {
+      "id": "alex",
+      "roomnumber": "210b",
+      "password": "12345"
+    }
+  ]
+}

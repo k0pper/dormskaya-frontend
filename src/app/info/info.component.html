@@ -1,0 +1,10 @@
+<h1>FAQ</h1>
+
+<mat-expansion-panel *ngFor="let faqEntry of faqEntries">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{faqEntry.question}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  {{faqEntry.answer}}
+</mat-expansion-panel>

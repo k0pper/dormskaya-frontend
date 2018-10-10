@@ -1,0 +1,19 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span [routerLink]="['']" class="homebutton">{{title}}</span>
+    <span class="example-spacer"></span>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item *ngIf="user" [routerLink]="['/rooms']"><mat-icon>format_list_bulleted</mat-icon>Rooms</button>
+      <button mat-menu-item *ngIf="user" [routerLink]="['/editRoom']"><mat-icon>edit</mat-icon>Your Room</button>
+      <button mat-menu-item *ngIf="user" class="logout" (click)="logout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
+      <button mat-menu-item *ngIf="!user" [routerLink]="['/login']"><mat-icon>vpn_key</mat-icon>Sign In / Up</button>
+      <hr>
+      <button mat-menu-item [routerLink]="['/info']"><mat-icon>help</mat-icon>Help</button>
+      <!--<button mat-menu-item><mat-icon>feedback</mat-icon>Leave Feedback</button>-->
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
