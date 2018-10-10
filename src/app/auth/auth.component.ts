@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from './auth.service';
 import {User} from './user.model';
 import {NotifierService} from 'angular-notifier';
-import {Router} from "@angular/router";
-import {HttpResponse} from "@angular/common/http";
-import {CookieService} from "angular2-cookie/core";
+import {HttpResponse} from '@angular/common/http';
+import {CookieService} from 'angular2-cookie/core';
 
 @Component({
   selector: 'app-auth',
@@ -47,7 +46,7 @@ export class AuthComponent implements OnInit {
   }
 
   register() {
-    let newUser: User = {
+    const newUser: User = {
       name: this.registerCredentials.name,
       roomnumber: this.registerCredentials.roomnumber,
       password: this.registerCredentials.password
@@ -57,7 +56,7 @@ export class AuthComponent implements OnInit {
           this.handleSuccessLogin(response2, true);
         }, ((err) => {
           this.handleFailedLogin(err);
-        }))
+        }));
     }, (failedRegistration) => {
       this.handleFailedLogin(failedRegistration);
     });
@@ -104,7 +103,7 @@ export class AuthComponent implements OnInit {
       roomnumber: '',
       password: '',
       passwordRepeat: '',
-    }
+    };
   }
 
   private subscribeToEvents() {
@@ -126,7 +125,7 @@ export class AuthComponent implements OnInit {
     this.loginCredentials = {
       name: '',
       password: '',
-    }
+    };
   }
 
   clearRegisterCredentials() {
@@ -135,7 +134,7 @@ export class AuthComponent implements OnInit {
       password: '',
       roomnumber: '',
       passwordRepeat: ''
-    }
+    };
   }
 
   loginNameIsValid() {
@@ -162,7 +161,7 @@ export class AuthComponent implements OnInit {
    */
 
   roomNumberIsValid() {
-    let regexp = new RegExp('^\\d{3}[a|b]{1}$');
+    const regexp = new RegExp('^\\d{3}[a|b]{1}$');
     const isValid = regexp.test(this.registerCredentials.roomnumber.toLowerCase());
     const errorMsg = 'Roomnumber must be 3 digits and an \'a\' or \'b\' e.g. 500b';
     if (isValid) {
@@ -211,7 +210,7 @@ export class AuthComponent implements OnInit {
 
   addErrorMessage(errorMsg) {
     if (!this.errors.some(((err: String) => err === errorMsg))) {
-      this.errors.push(errorMsg)
+      this.errors.push(errorMsg);
     }
   }
 

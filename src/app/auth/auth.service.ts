@@ -1,13 +1,13 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {User} from './user.model';
 import {HttpClient} from '@angular/common/http';
+import {ENDPOINT} from '../endpoint';
 
 @Injectable()
 export class AuthService {
   public userLoggedIn: EventEmitter<User> = new EventEmitter();
   public userLoggedOut: EventEmitter<User> = new EventEmitter();
   public userLoggedInFail: EventEmitter<String> = new EventEmitter();
-  private url = 'http://localhost:8000';
   private signUpEndpoint = '/auth/signup/';
   private loginEndpoint = '/auth/login/';
   private user: User;
@@ -16,15 +16,15 @@ export class AuthService {
   }
 
   register(user: User) {
-    return this.http.post(this.url + this.signUpEndpoint, user);
+    return this.http.post(ENDPOINT + this.signUpEndpoint, user);
   }
 
   login(user: User) {
-    let postUser = {
+    const postUser = {
       name: user.name,
       password: user.password
     };
-    return this.http.post(this.url + this.loginEndpoint, postUser)
+    return this.http.post(ENDPOINT + this.loginEndpoint, postUser);
   }
 
   logout() {
@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   getAllUsers() {
-    return this.http.get(this.url + '/users');
+    return this.http.get(ENDPOINT + '/users');
   }
 
 

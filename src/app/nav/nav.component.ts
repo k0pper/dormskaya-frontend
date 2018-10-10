@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../auth/user.model';
 import {AuthService} from '../auth/auth.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -21,12 +21,12 @@ export class NavComponent implements OnInit {
     });
     this.authService.userLoggedOut.subscribe(() => {
       this.user = undefined;
-    })
+    });
   }
 
   logout() {
     this.authService.logout();
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('/login');
   }
 
 

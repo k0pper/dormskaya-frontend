@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {RoomsService} from "./rooms.service";
-import {Room} from "../room/room.model";
+import {RoomsService} from './rooms.service';
+import {Room} from '../room/room.model';
 
 @Component({
   selector: 'app-rooms',
@@ -36,11 +36,11 @@ export class RoomsComponent implements OnInit {
     this.roomsService.getRooms().subscribe((rooms: Room[]) => {
       this.rooms = rooms;
       this.loading = false;
-    })
+    });
   }
 
   convertFilterToArray() {
-    let tagArray: Array<String> = [];
+    const tagArray: Array<String> = [];
 
     if (this.filter.doNotDisturb) {
       tagArray.push('DO NOT DISTURB');

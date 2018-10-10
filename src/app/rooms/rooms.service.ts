@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Room} from "../room/room.model";
-import {Observable} from "rxjs/index";
+import {HttpClient} from '@angular/common/http';
+import {Room} from '../room/room.model';
+import {ENDPOINT} from '../endpoint';
 
 @Injectable()
 export class RoomsService {
@@ -17,11 +17,11 @@ export class RoomsService {
   postRoom = '/room/update';
 
   getRooms() {
-    return this.http.get(this.url + this.allRooms);
+    return this.http.get(ENDPOINT + this.allRooms);
   }
 
   updateRoom(room: Room) {
-    return this.http.post(this.url + this.postRoom, room);
+    return this.http.post(ENDPOINT + this.postRoom, room);
   }
 
   getCurrentRoom(): Room {

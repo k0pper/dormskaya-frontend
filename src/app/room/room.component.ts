@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Room} from './room.model';
-import {User} from '../auth/user.model';
 import {AuthService} from '../auth/auth.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-room',

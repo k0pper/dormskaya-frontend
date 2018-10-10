@@ -13,14 +13,14 @@ import { EditRoomComponent } from './edit-room/edit-room.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { NotifierModule } from 'angular-notifier';
-import {RoomsService} from "./rooms/rooms.service";
-import {SortingRoomsPipe} from "./rooms/sort.pipe";
-import {FilterRoomsPipe} from "./rooms/filter.pipe";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {AuthGuard} from "./auth/auth.guard";
-import {TagFilterPipe} from "./rooms/tagfilter.pipe";
-import {CookieService} from "angular2-cookie/core";
-import {MatProgressSpinnerModule} from "@angular/material";
+import {RoomsService} from './rooms/rooms.service';
+import {SortingRoomsPipe} from './rooms/sort.pipe';
+import {FilterRoomsPipe} from './rooms/filter.pipe';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AuthGuard} from './auth/auth.guard';
+import {TagFilterPipe} from './rooms/tagfilter.pipe';
+import {CookieService} from 'angular2-cookie/core';
+import {MatProgressSpinnerModule} from '@angular/material';
 import { InfoComponent } from './info/info.component';
 
 @NgModule({

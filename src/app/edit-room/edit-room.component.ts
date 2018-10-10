@@ -1,10 +1,10 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Room} from '../room/room.model';
 import {User} from '../auth/user.model';
 import {AuthService} from '../auth/auth.service';
-import {NotifierService} from "angular-notifier";
-import {RoomsService} from "../rooms/rooms.service";
-import {RoomStatus} from "../room/room.status";
+import {NotifierService} from 'angular-notifier';
+import {RoomsService} from '../rooms/rooms.service';
+import {RoomStatus} from '../room/room.status';
 
 @Component({
   selector: 'app-edit-room',
@@ -33,9 +33,9 @@ export class EditRoomComponent implements OnInit {
     };
   }
 
-  saveRoom(room: Room) {
+  saveRoom() {
     this.cleanDescription();
-    this.roomService.updateRoom(this.postRoom).subscribe( (room: Room) => {
+    this.roomService.updateRoom(this.postRoom).subscribe( () => {
       this.notify.notify('success', 'Room Status Updated!');
     }, ((err => {
       this.notify.notify('error', err);
@@ -48,7 +48,7 @@ export class EditRoomComponent implements OnInit {
     } else {
       this.charactersLeft = this.MAX_CHARACTERS - this.postRoom.description.length;
     }
-    this.cleanDescription()
+    this.cleanDescription();
   }
 
   cleanDescription() {
