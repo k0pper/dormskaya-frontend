@@ -33,7 +33,7 @@ export class EditRoomComponent implements OnInit {
     };
   }
 
-  saveRoom() {
+  saveRoom(room: Room) {
     this.cleanDescription();
     this.roomService.updateRoom(this.postRoom).subscribe( (room: Room) => {
       this.notify.notify('success', 'Room Status Updated!');
