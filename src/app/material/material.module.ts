@@ -1,9 +1,7 @@
 import {NgModule} from '@angular/core';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatExpansionModule, MatFormFieldModule, MatGridListModule,
-  MatIconModule,
-  MatInputModule, MatMenuModule, MatSelectModule, MatTabsModule,
-  MatToolbarModule
+  MatIconModule, MatInputModule, MatMenuModule, MatSelectModule, MatTabsModule, MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 

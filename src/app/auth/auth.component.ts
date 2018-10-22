@@ -15,6 +15,8 @@ export class AuthComponent implements OnInit {
   loginCredentials;
   registerCredentials;
   rememberMe: boolean;
+  loginLoading = false;
+  signupLoading = false;
 
   userLoggedInFail;
   userLoggedIn;
@@ -37,6 +39,7 @@ export class AuthComponent implements OnInit {
   }
 
   login() {
+    this.loginLoading = true;
     this.authService.login(this.loginCredentials).subscribe((response: HttpResponse<any>) => {
       this.handleSuccessLogin(response);
     }, ((err) => {
@@ -46,6 +49,7 @@ export class AuthComponent implements OnInit {
   }
 
   register() {
+    this.signupLoading = true;
     const newUser: User = {
       name: this.registerCredentials.name,
       roomnumber: this.registerCredentials.roomnumber,
@@ -71,6 +75,7 @@ export class AuthComponent implements OnInit {
         // Comes back from backend
         roomnumber: response['roomnumber']
       };
+      this.signupLoading = false;
     } else {
       user = {
         name: this.loginCredentials.name,
@@ -78,6 +83,7 @@ export class AuthComponent implements OnInit {
         // Comes back from backend
         roomnumber: response['roomnumber']
       };
+      this.loginLoading = false;
     }
     this.authService.setUser(user);
 
@@ -90,6 +96,8 @@ export class AuthComponent implements OnInit {
   }
 
   private handleFailedLogin(response: HttpResponse<any>) {
+    this.loginLoading = false;
+    this.signupLoading = false;
     this.authService.userLoggedInFail.emit(response['error']);
   }
 

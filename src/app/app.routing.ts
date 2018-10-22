@@ -6,11 +6,11 @@ import {AuthGuard} from './auth/auth.guard';
 import {InfoComponent} from './info/info.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: AuthComponent },
-  { path: 'rooms', component: RoomsComponent, canActivate: [AuthGuard]},
-  { path: 'editRoom', component: EditRoomComponent, canActivate: [AuthGuard]},
-  { path: 'info', component: InfoComponent},
-  { path: '', redirectTo: 'login', pathMatch: 'full'}
+    {path: 'login', component: AuthComponent},
+    {path: 'rooms', component: RoomsComponent, canActivate: [AuthGuard]},
+    {path: 'editRoom', component: EditRoomComponent, canActivate: [AuthGuard]},
+    {path: 'info', component: InfoComponent},
+    {path: '**', redirectTo: 'login', pathMatch: 'full'}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

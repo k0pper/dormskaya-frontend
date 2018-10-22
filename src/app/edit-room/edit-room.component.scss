@@ -9,3 +9,17 @@ div {
 button {
   width: 100%;
 }
+
+button {
+  min-width: 48%;
+  min-height: 45px;
+}
+
+p {
+  display: inline-block;
+  font-size: 60px;
+}
+
+mat-spinner {
+  margin: 0 auto;
+}

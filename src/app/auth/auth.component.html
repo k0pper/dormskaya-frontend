@@ -7,7 +7,12 @@
   <mat-tab label="Sign In">
     <mat-card layout-align="center center" class="example-card">
       <mat-card-content>
-        <form class="example-form" autocomplete="off">
+
+        <div *ngIf="loginLoading" class="spinner-container">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <form class="example-form" autocomplete="off" *ngIf="!loginLoading">
           <table class="example-full-width" cellspacing="0">
             <tr>
               <td>
@@ -29,8 +34,8 @@
         </form>
       </mat-card-content>
       <mat-card-actions>
-        <button [disabled]="!loginFormIsValid()" (click)="login()" mat-raised-button color="primary">Sign In</button>
-        <button mat-raised-button (click)="clearLoginCredentials()">Clear</button>
+        <button [disabled]="!loginFormIsValid() || loginLoading" (click)="login()" mat-raised-button color="primary">Sign In</button>
+        <button [disabled]="loginLoading" mat-raised-button (click)="clearLoginCredentials()">Clear</button>
 
         <section class="example-section">
           <br>
@@ -45,7 +50,12 @@
     <mat-card layout-align="center center" class="example-card">
 
       <mat-card-content>
-        <form class="example-form" autocomplete="off">
+
+        <div *ngIf="signupLoading" class="spinner-container">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <form class="example-form" autocomplete="off" *ngIf="!signupLoading">
           <table class="example-full-width" cellspacing="0">
             <tr>
               <td>
@@ -84,14 +94,14 @@
               </td>
             </tr>
           </table>
+          <ul>
+            <li *ngFor="let error of errors">{{error}}</li>
+          </ul>
         </form>
-        <ul>
-          <li *ngFor="let error of errors">{{error}}</li>
-        </ul>
 
       </mat-card-content>
       <mat-card-actions>
-        <button [disabled]="!registerFormIsValid()" mat-raised-button color="primary" (click)="register()">Sign Up
+        <button [disabled]="!registerFormIsValid() || signupLoading" mat-raised-button color="primary" (click)="register()">Sign Up
         </button>
 
       </mat-card-actions>

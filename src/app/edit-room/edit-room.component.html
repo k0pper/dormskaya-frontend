@@ -1,18 +1,29 @@
-<h1>What's going on in your room?</h1>
-<br>
-<mat-form-field>
-  <mat-select placeholder="Room Status" [(ngModel)]="postRoom.status">
-    <mat-option value="DO NOT DISTURB">Do Not Disturb 😴</mat-option>
-    <mat-option value="PARTY">Party 🎉</mat-option>
-    <mat-option value="RELAXING">Relaxing 😌</mat-option>
-    <mat-option value="DRINKING">Drinking 🍻</mat-option>
-  </mat-select>
-</mat-form-field>
+<h1>{{user.roomnumber}}</h1>
+<h2>What's going on in your room?</h2>
 
-<mat-form-field>
-  <textarea matInput [maxLength]="MAX_CHARACTERS" [placeholder]="'Description (' + charactersLeft + ' characters left)'" (keyup)="input($event)" [(ngModel)]="postRoom.description"></textarea>
-</mat-form-field>
+<br>
+<hr>
+
+<div *ngIf="updatingLoading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!updatingLoading">
+  <mat-form-field>
+    <mat-select placeholder="Room Status" [(ngModel)]="postRoom.status">
+      <mat-option value="DO NOT DISTURB">Do Not Disturb 😴</mat-option>
+      <mat-option value="PARTY">Party 🎉</mat-option>
+      <mat-option value="RELAXING">Relaxing 😌</mat-option>
+      <mat-option value="DRINKING">Drinking 🍻</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput [maxLength]="MAX_CHARACTERS" [placeholder]="'Description (' + charactersLeft + ' characters left)'" (keyup)="input($event)" [(ngModel)]="postRoom.description"></textarea>
+  </mat-form-field>
+</div>
+
 
 <div style="float: right">
-  <button mat-raised-button color="primary" (click)="saveRoom()">Save</button>
+  <button [disabled]="updatingLoading" mat-raised-button color="primary" (click)="saveRoom()">Save</button>
 </div>

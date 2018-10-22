@@ -1,10 +1,9 @@
-<h1 *ngIf="rooms?.length > 0">{{rooms?.length}} rooms found</h1>
-<h1 *ngIf="rooms?.length < 1">
-  No Rooms found   <mat-icon>sentiment_very_dissatisfied</mat-icon>
-</h1>
+<h1>Rooms</h1>
+<h2>{{rooms?.length}} rooms found</h2>
+<br>
+<hr>
 
-
-<mat-expansion-panel class="filter">
+<mat-expansion-panel class="filter" *ngIf="!loading">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Filters
