@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class NavComponent implements OnInit {
   user: User;
   title = 'Dormskaya Rooms';
+  version = '1.0.1';
 
   constructor(private authService: AuthService, private router: Router) { }
 

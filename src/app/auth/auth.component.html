@@ -4,6 +4,7 @@
 </div>
 
 <mat-tab-group mat-stretch-tabs *ngIf="!user?.name">
+
   <mat-tab label="Sign In">
     <mat-card layout-align="center center" class="example-card">
       <mat-card-content>
@@ -36,11 +37,6 @@
       <mat-card-actions>
         <button [disabled]="!loginFormIsValid() || loginLoading" (click)="login()" mat-raised-button color="primary">Sign In</button>
         <button [disabled]="loginLoading" mat-raised-button (click)="clearLoginCredentials()">Clear</button>
-
-        <section class="example-section">
-          <br>
-          <mat-checkbox class="example-margin" [(ngModel)]="rememberMe">Remember Login</mat-checkbox>
-        </section>
 
       </mat-card-actions>
     </mat-card>
@@ -107,5 +103,5 @@
       </mat-card-actions>
     </mat-card>
   </mat-tab>
-</mat-tab-group>
 
+</mat-tab-group>

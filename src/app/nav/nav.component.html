@@ -1,6 +1,8 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <span [routerLink]="['']" class="homebutton">{{title}}</span>
+    <span [routerLink]="['/rooms']" class="homebutton">{{title}}</span>
+    &nbsp;
+    <div class="version">v.{{version}}</div>
     <span class="example-spacer"></span>
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item *ngIf="user" [routerLink]="['/rooms']"><mat-icon>format_list_bulleted</mat-icon>Rooms</button>
@@ -11,6 +13,8 @@
       <button mat-menu-item [routerLink]="['/info']"><mat-icon>help</mat-icon>Help</button>
       <!--<button mat-menu-item><mat-icon>feedback</mat-icon>Leave Feedback</button>-->
     </mat-menu>
+
+    <span class="loggedIn" *ngIf="user">{{(user.name.length>6)? (user.name | slice:0:6)+'(...)':(user.name)}} </span>
     <button mat-icon-button [matMenuTriggerFor]="appMenu">
       <mat-icon>view_headline</mat-icon>
     </button>

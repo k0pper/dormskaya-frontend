@@ -47,9 +47,5 @@ export class AuthService {
     this.user = user;
   }
 
-  getAllUsers() {
-    return this.http.get(ENDPOINT + '/users');
-  }
-
 
 }

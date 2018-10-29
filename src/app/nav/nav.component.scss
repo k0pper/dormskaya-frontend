@@ -29,10 +29,10 @@ mat-toolbar {
 }
 
 mat-menu {
-  button{
+  button {
     background: red !important;
   }
-  mat-icon{
+  mat-icon {
     margin-right: 0 !important;
     margin-left: 20px;
   }
@@ -50,4 +50,14 @@ hr {
   mat-icon {
     color: red;
   }
+}
+
+.version {
+  font-size: 10px;
+  color: #efefef;
+}
+
+.loggedIn {
+  color: white;
+  font-size: 14px;
 }

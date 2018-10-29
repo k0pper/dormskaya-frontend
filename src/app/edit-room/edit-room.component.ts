@@ -17,8 +17,8 @@ export class EditRoomComponent implements OnInit {
     user: User;
     updatingLoading = false;
 
-    MAX_CHARACTERS = 120;
-    charactersLeft = 120;
+    MAX_CHARACTERS = 720;
+    charactersLeft = 720;
 
     enterKeyErrorMessage = 'The Enter Key is not supported';
 
