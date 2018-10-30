@@ -3,7 +3,7 @@ import {AuthService} from './auth.service';
 import {User} from './user.model';
 import {NotifierService} from 'angular-notifier';
 import {HttpResponse} from '@angular/common/http';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-auth',
@@ -72,7 +72,7 @@ export class AuthComponent implements OnInit {
         let user: User;
         if (isRegistration) {
             user = {
-                name: this.registerCredentials.name.toLowerCase(),
+                name: this.registerCredentials.name,
                 password: this.registerCredentials.password,
                 // Comes back from backend
                 roomnumber: response['roomnumber']
@@ -80,7 +80,7 @@ export class AuthComponent implements OnInit {
             this.signupLoading = false;
         } else {
             user = {
-                name: this.loginCredentials.name.toLowerCase(),
+                name: this.loginCredentials.name,
                 password: this.loginCredentials.password,
                 // Comes back from backend
                 roomnumber: response['roomnumber']
