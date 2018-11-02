@@ -47,7 +47,6 @@ export class AuthComponent implements OnInit {
             password: this.cookieService.get(this.SPbRoomAppPassword),
             rememberMe: this.cookieService.get(this.SPbRoomAppRememberme)
         };
-        console.log(cookie);
         if (cookie.name && cookie.password) {
             this.loginCredentials.name = cookie.name;
             this.loginCredentials.password = cookie.password;
@@ -63,10 +62,8 @@ export class AuthComponent implements OnInit {
     login() {
         this.loginLoading = true;
         this.authService.login(this.loginCredentials).subscribe((response: HttpResponse<any>) => {
-            console.log('Login successful')
             this.handleSuccessLogin(response);
         }, ((err) => {
-            console.log('login failed')
             this.handleFailedLogin(err);
         }));
 
@@ -103,7 +100,6 @@ export class AuthComponent implements OnInit {
         } else {
             if (this.keepMeLoggedIn) {
                 this.saveCredentialsCookies();
-                console.log('saving cookies');
             }
             user = {
                 name: this.loginCredentials.name,

@@ -3,13 +3,13 @@
 <mat-expansion-panel [ngClass]="{'ownerStyle': isOwner()}">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <span>{{room.roomnumber}}</span>
+      <span class="roomNumber">{{room.roomnumber.toLowerCase()}}</span>
     </mat-panel-title>
     <mat-panel-description>
       <div [ngStyle]="{'background': getRoomColor()}" class="custom-badge"
            [ngClass]="{'hoverable': isOwner()}"
           (click)="goToEditPageIfOwner()">
-        <b>{{room.status}}</b>
+        {{room.status}}
       </div>
     </mat-panel-description>
   </mat-expansion-panel-header>

@@ -36,13 +36,17 @@ mat-expansion-panel {
 }
 
 .custom-badge {
-  padding: 3px;
+  padding: 6px;
   border-radius: 3px;
   border: rgba(0, 0, 0, 0.29) solid 1px;
   color: white;
   box-shadow: #a8a8a8 1px 1px 1px 1px;
   float: right;
   opacity: 0.8;
+  min-width: 15%;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 100;
 }
 
 .small {
@@ -74,4 +78,10 @@ mat-panel-title {
 
 .desc-container {
   word-wrap: break-word;
+}
+
+.roomNumber {
+  color: #6f6f6f;
+  font-size: 14px;
+  font-weight: 300 !important;
 }
