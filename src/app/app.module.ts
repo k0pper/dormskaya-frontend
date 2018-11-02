@@ -29,7 +29,6 @@ Services
 
 import {AuthService} from './auth/auth.service';
 import {RoomsService} from './rooms/rooms.service';
-import {CookieService} from 'angular2-cookie/core';
 
 /*
 Pipes
@@ -45,6 +44,7 @@ Guards and Routes
 
 import {routing} from './app.routing';
 import {AuthGuard} from './auth/auth.guard';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
     declarations: [

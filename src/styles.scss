@@ -1,14 +1,14 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~angular-notifier/styles.css";
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 body, html {
 
 }
 
 * {
-  font-family: Raleway, Ubuntu, "Helvetica Neue", sans-serif;
-  font-weight: 400;
+  font-family: Roboto, Raleway, "Helvetica Neue", sans-serif;
 }
 
 b {

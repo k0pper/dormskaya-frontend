@@ -4,6 +4,7 @@ import {User} from './user.model';
 import {NotifierService} from 'angular-notifier';
 import {HttpResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-auth',
@@ -16,6 +17,7 @@ export class AuthComponent implements OnInit {
     registerCredentials;
     loginLoading = false;
     signupLoading = false;
+    keepMeLoggedIn = true;
 
     userLoggedInFail;
     userLoggedIn;
@@ -27,7 +29,8 @@ export class AuthComponent implements OnInit {
 
     errors: String[] = [];
 
-    constructor(private authService: AuthService, private notifierService: NotifierService, private router: Router) {
+    constructor(private authService: AuthService, private notifierService: NotifierService, private router: Router,
+                private cookieService: CookieService) {
     }
 
     ngOnInit() {
@@ -38,13 +41,32 @@ export class AuthComponent implements OnInit {
         this.SPbRoomAppUsername = 'SPbRoomAppUsername';
         this.SPbRoomAppPassword = 'SPbRoomAppPassword';
         this.SPbRoomAppRememberme = 'SPbRoomAppRememberme';
+
+        const cookie = {
+            name: this.cookieService.get(this.SPbRoomAppUsername),
+            password: this.cookieService.get(this.SPbRoomAppPassword),
+            rememberMe: this.cookieService.get(this.SPbRoomAppRememberme)
+        };
+        console.log(cookie);
+        if (cookie.name && cookie.password) {
+            this.loginCredentials.name = cookie.name;
+            this.loginCredentials.password = cookie.password;
+            this.login();
+        } else {
+            this.deleteAllCookies();
+        }
+        if (cookie.rememberMe) {
+            this.keepMeLoggedIn = JSON.parse(cookie.rememberMe);
+        }
     }
 
     login() {
         this.loginLoading = true;
         this.authService.login(this.loginCredentials).subscribe((response: HttpResponse<any>) => {
+            console.log('Login successful')
             this.handleSuccessLogin(response);
         }, ((err) => {
+            console.log('login failed')
             this.handleFailedLogin(err);
         }));
 
@@ -79,6 +101,10 @@ export class AuthComponent implements OnInit {
             };
             this.signupLoading = false;
         } else {
+            if (this.keepMeLoggedIn) {
+                this.saveCredentialsCookies();
+                console.log('saving cookies');
+            }
             user = {
                 name: this.loginCredentials.name,
                 password: this.loginCredentials.password,
@@ -126,6 +152,7 @@ export class AuthComponent implements OnInit {
         });
         this.userLoggedOut = this.authService.userLoggedOut.subscribe((user: User) => {
             this.user = undefined;
+            this.deleteAllCookies();
             this.notifierService.notify('warning', user.name + ' logged out successfully');
         });
     }
@@ -223,8 +250,26 @@ export class AuthComponent implements OnInit {
         }
     }
 
+    formKeyDown(e: KeyboardEvent) {
+        if (e.key === 'Enter') {
+            this.login();
+        }
+    }
+
     /*
     Cookies
      */
+
+    private saveCredentialsCookies() {
+        this.cookieService.set(this.SPbRoomAppUsername, this.loginCredentials.name);
+        this.cookieService.set(this.SPbRoomAppPassword, this.loginCredentials.password);
+        this.cookieService.set(this.SPbRoomAppRememberme, 'true');
+    }
+
+    private deleteAllCookies() {
+        this.cookieService.delete(this.SPbRoomAppUsername);
+        this.cookieService.delete(this.SPbRoomAppPassword);
+        this.cookieService.delete(this.SPbRoomAppRememberme);
+    }
 
 }

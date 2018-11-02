@@ -44,10 +44,6 @@ button[disabled] {
   background: rgba(172, 172, 172, 0.45) !important;
 }
 
-mat-card-actions {
-  text-align: center;
-}
-
 li {
   color: red;
 }
@@ -62,7 +58,32 @@ mat-spinner {
   margin: 0 auto;
 }
 
-button {
-  min-width: 48%;
-  min-height: 45px;
+.tab-wrapper {
+  padding: 20px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+
+  button {
+    min-height: 45px;
+    width: 50%;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+  button:first-child {
+    margin-right: 5px;
+  }
+}
+
+.checkbox-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  td {
+    padding-bottom: 15px;
+  }
 }

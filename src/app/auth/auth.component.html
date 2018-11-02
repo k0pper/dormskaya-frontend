@@ -1,107 +1,114 @@
 <div class="info" *ngIf="user?.name">
-  <span class="welcome">You are logged in as <b>{{user?.name}}</b></span>
-  <span>Here could be a dashboard in the future</span>
+    <span class="welcome">You are logged in as <b>{{user?.name}}</b></span>
+    <span>Here could be a dashboard in the future</span>
 </div>
 
 <mat-tab-group mat-stretch-tabs *ngIf="!user?.name">
 
-  <mat-tab label="Sign In">
-    <mat-card layout-align="center center" class="example-card">
-      <mat-card-content>
+    <mat-tab label="SIGN IN">
 
-        <div *ngIf="loginLoading" class="spinner-container">
-          <mat-spinner></mat-spinner>
+        <div class="tab-wrapper">
+            <div *ngIf="loginLoading" class="spinner-container">
+                <mat-spinner></mat-spinner>
+            </div>
+
+            <form class="example-form" autocomplete="off" *ngIf="!loginLoading" (keypress)="formKeyDown($event)">
+                <table class="example-full-width">
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput maxlength="20" placeholder="Username" type="username" name="username"
+                                       [(ngModel)]="loginCredentials.name">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Password" type="password" name="password"
+                                       [(ngModel)]="loginCredentials.password">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+            <div class="button-wrapper">
+                <button [disabled]="!loginFormIsValid() || loginLoading" (click)="login()" mat-raised-button
+                        color="primary">
+                    Sign In
+                </button>
+                <button [disabled]="loginLoading" mat-raised-button (click)="clearLoginCredentials()">Clear</button>
+            </div>
+
+            <div class="checkbox-wrapper">
+                <mat-checkbox [(ngModel)]="keepMeLoggedIn">Keep me logged in</mat-checkbox>
+            </div>
+
         </div>
 
-        <form class="example-form" autocomplete="off" *ngIf="!loginLoading">
-          <table class="example-full-width" cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <input matInput maxlength="20" placeholder="Username" type="username" name="username" [(ngModel)]="loginCredentials.name">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Password" type="password" name="password"
-                         [(ngModel)]="loginCredentials.password">
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-        </form>
-      </mat-card-content>
-      <mat-card-actions>
-        <button [disabled]="!loginFormIsValid() || loginLoading" (click)="login()" mat-raised-button color="primary">Sign In</button>
-        <button [disabled]="loginLoading" mat-raised-button (click)="clearLoginCredentials()">Clear</button>
 
-      </mat-card-actions>
-    </mat-card>
+    </mat-tab>
+    <mat-tab label="SIGN UP">
 
-  </mat-tab>
-  <mat-tab label="Sign Up">
-    <mat-card layout-align="center center" class="example-card">
 
-      <mat-card-content>
+        <div class="tab-wrapper">
+            <div *ngIf="signupLoading" class="spinner-container">
+                <mat-spinner></mat-spinner>
+            </div>
 
-        <div *ngIf="signupLoading" class="spinner-container">
-          <mat-spinner></mat-spinner>
+            <form class="example-form" autocomplete="off" *ngIf="!signupLoading">
+                <table class="example-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput maxlength="20" placeholder="Username" name="username"
+                                       [(ngModel)]="registerCredentials.name"
+                                       [ngClass]="{'ok': registerNameIsValid()}">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Room Number (e.g. 201b)" name="roomnumber"
+                                       [(ngModel)]="registerCredentials.roomnumber"
+                                       [ngClass]="{'ok': roomNumberIsValid()}">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Password" type="password" name="password"
+                                       autocomplete="new-password"
+                                       [(ngModel)]="registerCredentials.password"
+                                       [ngClass]="{'ok': passwordStrengthIsValid()}">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Repeat Password" type="password" name="passwordrepeat"
+                                       [(ngModel)]="registerCredentials.passwordRepeat"
+                                       [ngClass]="{'ok': passwordRepeatIsValid()}">
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+                <ul>
+                    <li *ngFor="let error of errors">{{error}}</li>
+                </ul>
+            </form>
+
+            <div class="button-wrapper">
+                <button [disabled]="!registerFormIsValid() || signupLoading" mat-raised-button color="primary"
+                        (click)="register()">Sign Up
+                </button>
+            </div>
         </div>
 
-        <form class="example-form" autocomplete="off" *ngIf="!signupLoading">
-          <table class="example-full-width" cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <input matInput maxlength="20" placeholder="Username" name="username"
-                         [(ngModel)]="registerCredentials.name"
-                         [ngClass]="{'ok': registerNameIsValid()}">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Room Number (e.g. 201b)" name="roomnumber"
-                         [(ngModel)]="registerCredentials.roomnumber"
-                         [ngClass]="{'ok': roomNumberIsValid()}">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Password" type="password" name="password" autocomplete="new-password"
-                         [(ngModel)]="registerCredentials.password"
-                         [ngClass]="{'ok': passwordStrengthIsValid()}">
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Repeat Password" type="password" name="passwordrepeat"
-                         [(ngModel)]="registerCredentials.passwordRepeat"
-                         [ngClass]="{'ok': passwordRepeatIsValid()}">
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-          <ul>
-            <li *ngFor="let error of errors">{{error}}</li>
-          </ul>
-        </form>
-
-      </mat-card-content>
-      <mat-card-actions>
-        <button [disabled]="!registerFormIsValid() || signupLoading" mat-raised-button color="primary" (click)="register()">Sign Up
-        </button>
-
-      </mat-card-actions>
-    </mat-card>
-  </mat-tab>
+    </mat-tab>
 
 </mat-tab-group>
