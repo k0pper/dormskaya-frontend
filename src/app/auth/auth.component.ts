@@ -27,6 +27,8 @@ export class AuthComponent implements OnInit {
     SPbRoomAppPassword: string;
     SPbRoomAppRememberme: string;
 
+    cookie;
+
     errors: String[] = [];
 
     constructor(private authService: AuthService, private notifierService: NotifierService, private router: Router,
@@ -37,31 +39,25 @@ export class AuthComponent implements OnInit {
         this.user = this.authService.getUser();
         this.subscribeToEvents();
         this.initializeModels();
-
         this.SPbRoomAppUsername = 'SPbRoomAppUsername';
         this.SPbRoomAppPassword = 'SPbRoomAppPassword';
         this.SPbRoomAppRememberme = 'SPbRoomAppRememberme';
-
-        const cookie = {
-            name: this.cookieService.get(this.SPbRoomAppUsername),
-            password: this.cookieService.get(this.SPbRoomAppPassword),
-            rememberMe: this.cookieService.get(this.SPbRoomAppRememberme)
-        };
-        if (cookie.name && cookie.password) {
-            this.loginCredentials.name = cookie.name;
-            this.loginCredentials.password = cookie.password;
-            this.login();
+        this.setCookieObjectFromCookie();
+        if (this.hasCookieObject()) {
+            this.loginCredentials.name = this.cookie.name;
+            this.loginCredentials.password = this.cookie.password;
+            this.login(this.cookie);
         } else {
             this.deleteAllCookies();
         }
-        if (cookie.rememberMe) {
-            this.keepMeLoggedIn = JSON.parse(cookie.rememberMe);
+        if (this.cookie.rememberMe) {
+            this.keepMeLoggedIn = JSON.parse(this.cookie.rememberMe);
         }
     }
 
-    login() {
+    login(user) {
         this.loginLoading = true;
-        this.authService.login(this.loginCredentials).subscribe((response: HttpResponse<any>) => {
+        this.authService.login(user).subscribe((response: HttpResponse<any>) => {
             this.handleSuccessLogin(response);
         }, ((err) => {
             this.handleFailedLogin(err);
@@ -104,7 +100,6 @@ export class AuthComponent implements OnInit {
             user = {
                 name: this.loginCredentials.name,
                 password: this.loginCredentials.password,
-                // Comes back from backend
                 roomnumber: response['roomnumber']
             };
             this.loginLoading = false;
@@ -248,7 +243,7 @@ export class AuthComponent implements OnInit {
 
     formKeyDown(e: KeyboardEvent) {
         if (e.key === 'Enter') {
-            this.login();
+            this.login(this.loginCredentials);
         }
     }
 
@@ -266,6 +261,18 @@ export class AuthComponent implements OnInit {
         this.cookieService.delete(this.SPbRoomAppUsername);
         this.cookieService.delete(this.SPbRoomAppPassword);
         this.cookieService.delete(this.SPbRoomAppRememberme);
+    }
+
+    private hasCookieObject() {
+        return this.cookie.name && this.cookie.password;
+    }
+
+    private setCookieObjectFromCookie() {
+        this.cookie = {
+            name: this.cookieService.get(this.SPbRoomAppUsername),
+            password: this.cookieService.get(this.SPbRoomAppPassword),
+            rememberMe: this.cookieService.get(this.SPbRoomAppRememberme)
+        };
     }
 
 }

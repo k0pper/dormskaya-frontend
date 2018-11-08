@@ -13,7 +13,7 @@ export class RoomsComponent implements OnInit {
   loading = true;
 
   filter = {
-    doNotDisturb: true,
+    doNotDisturb: false,
     party: true,
     relaxing: true,
     drinking: true
@@ -39,6 +39,11 @@ export class RoomsComponent implements OnInit {
     });
   }
 
+  refreshRooms() {
+    const oldRoomCount = this.rooms.length;
+    this.getRooms();
+  }
+
   convertFilterToArray() {
     const tagArray: Array<String> = [];
 
@@ -55,10 +60,6 @@ export class RoomsComponent implements OnInit {
       tagArray.push('DRINKING');
     }
     this.tagArray = tagArray;
-  }
-
-  hasFilter(): boolean {
-    return (this.searchTerm.length > 0 || (this.filter.drinking || this.filter.doNotDisturb || this.filter.relaxing || this.filter.party));
   }
 
   private subscribeToRoomEvents() {
